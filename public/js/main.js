@@ -4,12 +4,12 @@
 (function(w, $, undefined) {
   "use strict";
 
-	var Module = {
+	var Menu = {
 
     init: function() {
       // ...
     }
   };
 
-	$(Module.init);
+	$(Menu.init);
 })(this, jQuery);
