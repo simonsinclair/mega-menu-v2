@@ -1,6 +1,11 @@
 // main.scss
 //
 
+@import 'mixins';
+
+$brand: #BB1919;
+$brand-2: #A91717;
+
 * {
   &,
   &:before,
@@ -17,19 +22,241 @@ body {
   line-height: 22px; // 1.4
   // -webkit-font-smoothing: antialiased;
 }
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 
 // PAGE
 //
 
+.blq {
+  height: 40px;
+}
+.masthead {
+  background-color: $brand;
+  -webkit-font-smoothing: antialiased;
+}
+  .masthead__inner {
+    @include container;
+    position: relative;
+    height: 56px;
+  }
+  .masthead__location {
+    color: #FFF;
+    font-size: 18px;
+    position: absolute;
+      top: 50%; right: 16px;
+    transform: translateY(-50%);
+  }
 
-// Utility
+
+// Primary & Secondary Nav
 //
 
-@mixin clearfix {
+.primary-nav,
+.secondary-nav {
+  height: 38px;
 
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
+  ul {
+    @include nav;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  li {
+
+    &:first-child {
+
+      a {
+        padding-left: 16px;
+
+        &::before {
+          content: none;
+        }
+      }
+    }
+
+    &:last-child {
+
+      a {
+        padding-right: 16px;
+      }
+    }
+  }
+  a {
+    display: block;
+    font-size: 14px;
+    line-height: 1;
+    padding-top: 12px;
+    padding-right: 12px;
+
+    &::before {
+      display: inline-block;
+      content: "";
+      height: 12px;
+      margin-right: 12px;
+      width: 1px;
+    }
   }
 }
+.primary-nav__inner,
+.secondary-nav__inner {
+  @include container;
+  @include container--full;
+}
+
+.primary-nav {
+  background-color: $brand-2;
+  -webkit-font-smoothing: antialiased;
+
+  li {
+
+    &.active {
+
+      a {
+        background-color: #FFF;
+      }
+    }
+  }
+  a {
+
+    &::before {
+      background-color: rgba(255,255,255,0.6);
+    }
+  }
+}
+  .primary-nav__inner {}
+
+.secondary-nav {
+  border-bottom: 1px solid #EEE;
+
+  ul {}
+  li {}
+  a {
+
+    &::before {
+      background-color: #DDD;
+    }
+  }
+}
+  .secondary-nav__inner {}
+
+
+// Mega Menu
+//
+
+.mega-menu {
+  @include clearfix;
+
+  background-color: #222;
+  font-size: 14px;
+  padding-top: 48px;
+  padding-bottom: 48px;
+  // height: 0;
+  // overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+  .mega-menu__inner {
+    @include container;
+    @include container--full;
+    position: relative;
+  }
+    .mega-menu__core {
+      list-style: none;
+      margin-top: 0;
+      margin-right: 260px + 32;
+      margin-bottom: 0;
+      padding-left: 0;
+
+      > li {
+        @include clearfix;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        padding-left: 16px;
+        border-bottom: 1px solid #333;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &.active {
+          padding-left: 0;
+
+          > a {
+            border-left: 4px solid $brand-2;
+            padding-left: 12px;
+            width: 142px + 20 + 16;
+          }
+        }
+
+        > a {
+          color: #FFF;
+          font-weight: bold;
+          float: left;
+          width: 142px + 20;
+        }
+
+        // Children lists
+        ul {
+          @include clearfix;
+          float: left;
+          list-style: none;
+          margin-top: 0;
+          margin-bottom: 0;
+          padding-left: 0;
+
+          li {
+            float: left;
+
+            &:first-child::before {
+              content: none;
+            }
+            &::before {
+              color: #AAA;
+              content: "•";
+              margin-left: 8px;
+              padding-right: 8px;
+            }
+          }
+          a {
+            color: #F0F0F0;
+          }
+        }
+      }
+    }
+
+    .mega-menu__aside {
+      position: absolute;
+       top: 0; right: 0;
+      width: 260px;
+
+      h4 {
+        color: #F0F0F0;
+        font-size: 11px;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        text-transform: uppercase;
+      }
+      ul {
+        @include nav;
+        margin-top: 0;
+        margin-bottom: 0;
+
+        + h4 {
+          margin-top: 16px;
+        }
+      }
+      li {
+        padding-top: 4px;
+        padding-bottom: 4px;
+        width: 50%;
+      }
+      a {
+        color: #FFF;
+      }
+    }
+.mega-menu--open {}
+

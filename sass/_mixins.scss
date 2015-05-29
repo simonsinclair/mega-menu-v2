@@ -1,0 +1,31 @@
+@mixin container {
+  max-width: 1008px;
+  padding-right: 16px;
+  padding-left: 16px;
+  margin: 0 auto;
+}
+
+@mixin container--full {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@mixin nav {
+
+  @include clearfix;
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    float: left;
+  }
+}
+
+@mixin clearfix {
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
