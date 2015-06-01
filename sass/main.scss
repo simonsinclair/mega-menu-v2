@@ -139,6 +139,14 @@ a {
   a {
     color: #FFF;
 
+    &:hover {
+
+      span {
+        border-bottom: 4px solid #FFF;
+        padding-bottom: 7px;
+      }
+    }
+
     &::before {
       background-color: rgba(255,255,255,0.6);
     }
@@ -207,8 +215,7 @@ a {
           }
         }
 
-        &.active,
-        &.hovered-row {
+        &.active {
 
           > a {
             margin-left: 0;
@@ -216,6 +223,19 @@ a {
 
             span {
               border-left: 4px solid $brand-2;
+              padding-left: 12px;
+            }
+          }
+        }
+
+        &.highlight-row {
+
+          > a {
+            margin-left: 0;
+            width: 142px + 20 + 16;
+
+            span {
+              border-left: 4px solid #FFF;
               padding-left: 12px;
             }
           }
@@ -233,7 +253,7 @@ a {
             margin-left: 0;
 
             span {
-              border-left: 4px solid $brand-2;
+              border-left: 4px solid #FFF;
               padding-left: 12px;
             }
           }
@@ -249,17 +269,13 @@ a {
           padding-left: 0;
 
           li {
-            padding-top: 6px;
             float: left;
 
-            &:first-child::before {
-              content: none;
-            }
-            &::before {
-              color: #AAA;
-              content: "•";
-              margin-left: 8px;
-              padding-right: 8px;
+            &:first-child {
+
+              a::before {
+                content: none;
+              }
             }
 
             &.active {
@@ -267,23 +283,29 @@ a {
               a {
                 color: #FFF;
 
-                span {
-                  padding-bottom: 9px;
-                  border-bottom: 1px solid #FFF;
-                }
+                span {}
               }
             }
           }
           a {
             color: #F0F0F0;
+            display: block;
+            padding-top: 6px;
+            padding-bottom: 6px;
+
+            span {}
 
             &:hover {
               color: #FFF;
 
-              span {
-                padding-bottom: 9px;
-                border-bottom: 1px solid #FFF;
-              }
+              span {}
+            }
+
+            &::before {
+              color: #AAA;
+              content: "•";
+              margin-left: 8px;
+              padding-right: 8px;
             }
           }
         }
