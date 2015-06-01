@@ -146,6 +146,8 @@ a {
   }
   a {
     color: #FFF;
+    opacity: 1;
+    transition: opacity $closeDuration $closeCurve;
 
     &:hover {
 
@@ -202,6 +204,7 @@ a {
 
   a:not(.toggle-menu) {
     opacity: 0;
+    transition: opacity $openDuration $openCurve;
   }
 }
   .primary-nav__inner {}
@@ -212,6 +215,8 @@ a {
   ul {}
   li {}
   a {
+    opacity: 1;
+    transition: opacity $closeDuration $closeCurve;
 
     &::before {
       background-color: #DDD;
@@ -222,6 +227,7 @@ a {
 
   a {
     opacity: 0;
+    transition: opacity $openDuration $openCurve;
   }
 }
   .secondary-nav__inner {}
