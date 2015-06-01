@@ -6,6 +6,11 @@
 $brand: #BB1919;
 $brand-2: #A91717;
 
+$openDuration: 250ms;
+$openCurve: cubic-bezier(0.19,1,0.22,1);
+$closeDuration: 250ms;
+$closeCurve: cubic-bezier(0.19,1,0.22,1);
+
 * {
   &,
   &:before,
@@ -151,11 +156,51 @@ a {
       background-color: rgba(255,255,255,0.6);
     }
   }
+
+  .toggle-menu {
+    font-weight: bold;
+
+    &:hover {
+      background-color: #222;
+
+      span {
+        border-bottom-color: #222;
+      }
+      &::before {
+        background-color: rgba(255,255,255,0);
+      }
+
+    }
+
+    img {
+      margin-right: 3px;
+      margin-bottom: -1px;
+    }
+
+    .toggle-menu__close { display: none; }
+
+    &.toggle-menu--active {
+
+      background-color: #222;
+
+      span {
+        border-bottom-color: #222;
+      }
+      &::before {
+        background-color: rgba(255,255,255,0);
+      }
+
+      .toggle-menu__list { display: none; }
+      .toggle-menu__close { display: inline; }
+    }
+  }
 }
+.primary-nav--hidden {}
   .primary-nav__inner {}
 
 .secondary-nav {
   border-bottom: 1px solid #EEE;
+  transition: height $closeDuration $closeCurve;
 
   ul {}
   li {}
@@ -165,6 +210,11 @@ a {
       background-color: #DDD;
     }
   }
+}
+.secondary-nav--hidden {
+  height: 0;
+  overflow: hidden;
+  transition: height $openDuration $openCurve;
 }
   .secondary-nav__inner {}
 
@@ -177,12 +227,18 @@ a {
 
   background-color: #222;
   font-size: 14px;
-  padding-top: 32px;
-  padding-bottom: 32px;
-  // height: 0;
-  // overflow: hidden;
+  height: 0;
+  overflow: hidden;
+  transition: all $closeDuration $closeCurve;
   -webkit-font-smoothing: antialiased;
 }
+.mega-menu--open {
+  height: 448px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  transition: all $openDuration $openCurve;
+}
+
   .mega-menu__inner {
     @include container;
     @include container--full;
@@ -344,5 +400,3 @@ a {
         color: #FFF;
       }
     }
-.mega-menu--open {}
-
