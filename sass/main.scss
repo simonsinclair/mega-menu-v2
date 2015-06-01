@@ -90,6 +90,7 @@ a {
     line-height: 1;
     padding-top: 12px;
     padding-right: 12px;
+    padding-bottom: 12px;
 
     &::before {
       display: inline-block;
@@ -114,12 +115,29 @@ a {
 
     &.active {
 
+      // li.active + li a::before
+      // - Turn off vertical keyline beside .active list item
+      + li a::before {
+        background-color: rgba(255,255,255,0);
+      }
+
       a {
+        color: inherit;
         background-color: #FFF;
+
+        &::before {
+          background-color: rgba(255,255,255,0);
+        }
+      }
+
+      span {
+        border-bottom: 4px solid $brand-2;
+        padding-bottom: 7px;
       }
     }
   }
   a {
+    color: #FFF;
 
     &::before {
       background-color: rgba(255,255,255,0.6);
@@ -151,8 +169,8 @@ a {
 
   background-color: #222;
   font-size: 14px;
-  padding-top: 48px;
-  padding-bottom: 48px;
+  padding-top: 32px;
+  padding-bottom: 32px;
   // height: 0;
   // overflow: hidden;
   -webkit-font-smoothing: antialiased;
@@ -170,31 +188,55 @@ a {
       padding-left: 0;
 
       > li {
-        @include clearfix;
-        padding-top: 6px;
-        padding-bottom: 6px;
-        padding-left: 16px;
         border-bottom: 1px solid #333;
 
         &:last-child {
           border-bottom: none;
         }
 
-        &.active {
-          padding-left: 0;
+        &.has-children {
+          @include clearfix;
 
           > a {
-            border-left: 4px solid $brand-2;
-            padding-left: 12px;
+            float: left;
+            width: 142px + 20;
+
+            &:hover {
+              width: 142px + 20 + 16;
+            }
+          }
+        }
+
+        &.active,
+        &.hovered-row {
+
+          > a {
+            margin-left: 0;
             width: 142px + 20 + 16;
+
+            span {
+              border-left: 4px solid $brand-2;
+              padding-left: 12px;
+            }
           }
         }
 
         > a {
           color: #FFF;
+          display: inline-block;
           font-weight: bold;
-          float: left;
-          width: 142px + 20;
+          margin-left: 16px;
+          padding-top: 6px;
+          padding-bottom: 6px;
+
+          &:hover {
+            margin-left: 0;
+
+            span {
+              border-left: 4px solid $brand-2;
+              padding-left: 12px;
+            }
+          }
         }
 
         // Children lists
@@ -207,6 +249,7 @@ a {
           padding-left: 0;
 
           li {
+            padding-top: 6px;
             float: left;
 
             &:first-child::before {
@@ -218,9 +261,30 @@ a {
               margin-left: 8px;
               padding-right: 8px;
             }
+
+            &.active {
+
+              a {
+                color: #FFF;
+
+                span {
+                  padding-bottom: 9px;
+                  border-bottom: 1px solid #FFF;
+                }
+              }
+            }
           }
           a {
             color: #F0F0F0;
+
+            &:hover {
+              color: #FFF;
+
+              span {
+                padding-bottom: 9px;
+                border-bottom: 1px solid #FFF;
+              }
+            }
           }
         }
       }
@@ -232,7 +296,7 @@ a {
       width: 260px;
 
       h4 {
-        color: #F0F0F0;
+        color: #777;
         font-size: 11px;
         margin-top: 0;
         margin-bottom: 0;
