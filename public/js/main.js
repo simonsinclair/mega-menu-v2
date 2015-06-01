@@ -51,11 +51,11 @@
     },
 
     hidePrimaryNav: function() {
-
+      $('#js-primary-nav').addClass('primary-nav--hidden');
     },
 
     showPrimaryNav: function() {
-
+      $('#js-primary-nav').removeClass('primary-nav--hidden');
     }
   };
 

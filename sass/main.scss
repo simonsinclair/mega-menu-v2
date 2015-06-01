@@ -7,9 +7,9 @@ $brand: #BB1919;
 $brand-2: #A91717;
 
 $openDuration: 250ms;
-$openCurve: cubic-bezier(0.19,1,0.22,1);
+$openCurve: cubic-bezier(0.23, 1, 0.32, 1);
 $closeDuration: 250ms;
-$closeCurve: cubic-bezier(0.19,1,0.22,1);
+$closeCurve: cubic-bezier(0.23, 1, 0.32, 1);
 
 * {
   &,
@@ -47,6 +47,9 @@ a {
     @include container;
     position: relative;
     height: 56px;
+  }
+  .masthead__brand {
+    margin-top: 12px;
   }
   .masthead__location {
     color: #FFF;
@@ -195,12 +198,16 @@ a {
     }
   }
 }
-.primary-nav--hidden {}
+.primary-nav--hidden {
+
+  a:not(.toggle-menu) {
+    opacity: 0;
+  }
+}
   .primary-nav__inner {}
 
 .secondary-nav {
   border-bottom: 1px solid #EEE;
-  transition: height $closeDuration $closeCurve;
 
   ul {}
   li {}
@@ -212,9 +219,10 @@ a {
   }
 }
 .secondary-nav--hidden {
-  height: 0;
-  overflow: hidden;
-  transition: height $openDuration $openCurve;
+
+  a {
+    opacity: 0;
+  }
 }
   .secondary-nav__inner {}
 
@@ -229,19 +237,19 @@ a {
   font-size: 14px;
   height: 0;
   overflow: hidden;
-  transition: all $closeDuration $closeCurve;
+  transition: height $closeDuration $closeCurve;
   -webkit-font-smoothing: antialiased;
 }
 .mega-menu--open {
   height: 448px;
-  padding-top: 32px;
-  padding-bottom: 32px;
-  transition: all $openDuration $openCurve;
+  transition: height $openDuration $openCurve;
 }
 
   .mega-menu__inner {
     @include container;
     @include container--full;
+    padding-top: 32px;
+    padding-bottom: 32px;
     position: relative;
   }
     .mega-menu__core {
@@ -370,7 +378,7 @@ a {
 
     .mega-menu__aside {
       position: absolute;
-       top: 0; right: 0;
+       top: 32px; right: 0;
       width: 260px;
 
       h4 {
