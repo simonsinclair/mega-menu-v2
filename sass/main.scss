@@ -6,9 +6,9 @@
 $brand: #BB1919;
 $brand-2: #A91717;
 
-$openDuration: 250ms;
+$openDuration: 350ms;
 $openCurve: cubic-bezier(0.23, 1, 0.32, 1);
-$closeDuration: 250ms;
+$closeDuration: 350ms;
 $closeCurve: cubic-bezier(0.23, 1, 0.32, 1);
 
 * {
@@ -99,6 +99,9 @@ a {
     padding-top: 12px;
     padding-right: 12px;
     padding-bottom: 12px;
+    opacity: 1;
+    transform: translate3d(0,0,0);
+    transition: opacity 30ms linear, transform 30ms linear;
 
     &::before {
       display: inline-block;
@@ -106,6 +109,12 @@ a {
       height: 12px;
       margin-right: 12px;
       width: 1px;
+    }
+
+    &.hidden {
+      opacity: 0;
+      // transform: translate3d(0,1em,0);
+      transition: opacity 30ms linear, transform 30ms linear;
     }
   }
 }
@@ -120,6 +129,7 @@ a {
   // -webkit-font-smoothing: antialiased;
 
   li {
+    overflow: hidden;
 
     &.active {
 
@@ -142,12 +152,19 @@ a {
         border-bottom: 4px solid $brand-2;
         padding-bottom: 7px;
       }
+    } // /.active
+
+    // Show items as screen width allows
+    @media (max-width: 1007px) {
+      &:nth-child(11) { display: none; }
     }
+    @media (max-width: 893px) {
+      &:nth-child(10) { display: none; }
+    }
+
   }
   a {
     color: #FFF;
-    opacity: 1;
-    transition: opacity $closeDuration $closeCurve;
 
     &:hover {
 
@@ -164,6 +181,7 @@ a {
 
   .toggle-menu {
     font-weight: bold;
+    -webkit-font-smoothing: antialiased;
 
     &:hover {
       background-color: #222;
@@ -199,13 +217,7 @@ a {
     }
   }
 }
-.primary-nav--hidden {
-
-  a:not(.toggle-menu) {
-    opacity: 0;
-    transition: opacity $openDuration $openCurve;
-  }
-}
+.primary-nav--hidden {}
   .primary-nav__inner {}
 
 .secondary-nav {
@@ -224,21 +236,17 @@ a {
     }
   }
   a {
-    opacity: 1;
-    transition: opacity $closeDuration $closeCurve;
 
     &::before {
       background-color: #DDD;
     }
-  }
-}
-.secondary-nav--hidden {
 
-  a {
-    opacity: 0;
-    transition: opacity $openDuration $openCurve;
+    &.hidden {
+      // transform: translate3d(0,-1em,0);
+    }
   }
 }
+.secondary-nav--hidden {}
   .secondary-nav__inner {}
 
 
@@ -253,8 +261,55 @@ a {
   -webkit-font-smoothing: antialiased;
 }
 .mega-menu--open {
-  height: 632px;
+  height: 640px;
   transition: height $openDuration $openCurve;
+
+  .mega-menu__core {
+
+    // Parents
+    > li {
+
+      &:nth-child(1) a { transition-delay:  0ms; }
+      &:nth-child(2) a { transition-delay:  16ms; }
+      &:nth-child(3) a { transition-delay:  32ms; }
+      &:nth-child(4) a { transition-delay:  48ms; }
+      &:nth-child(5) a { transition-delay:  64ms; }
+      &:nth-child(6) a { transition-delay:  80ms; }
+      &:nth-child(7) a { transition-delay:  96ms; }
+      &:nth-child(8) a { transition-delay:  112ms; }
+      &:nth-child(9) a { transition-delay:  128ms; }
+      &:nth-child(10) a { transition-delay: 144ms; }
+      &:nth-child(11) a { transition-delay: 160ms; }
+
+      a {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition: opacity 120ms linear, transform 120ms linear;
+      }
+
+      // Children
+      ul li {
+
+        &:nth-child(1) a { transition-delay:  0ms; }
+        &:nth-child(2) a { transition-delay:  16ms; }
+        &:nth-child(3) a { transition-delay:  32ms; }
+        &:nth-child(4) a { transition-delay:  48ms; }
+        &:nth-child(5) a { transition-delay:  64ms; }
+        &:nth-child(6) a { transition-delay:  80ms; }
+        &:nth-child(7) a { transition-delay:  96ms; }
+        &:nth-child(8) a { transition-delay:  112ms; }
+        &:nth-child(9) a { transition-delay:  128ms; }
+        &:nth-child(10) a { transition-delay: 144ms; }
+        &:nth-child(11) a { transition-delay: 160ms; }
+
+        a {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+          transition: opacity 120ms linear, transform 120ms linear;
+        }
+      }
+    }
+  }
 }
   .mega-menu__core {
     @include container;
@@ -322,6 +377,9 @@ a {
         margin-left: 16px;
         padding-top: 10px;
         padding-bottom: 10px;
+        opacity: 0;
+        transform: translate3d(-1em, 0, 0);
+        transition: opacity 120ms linear, transform 120ms linear;
 
         &:hover {
           margin-left: 0;
@@ -369,6 +427,9 @@ a {
           line-height: 1;
           padding-top: 11px;
           padding-bottom: 10px;
+          opacity: 0;
+          transform: translate3d(-1em, 0, 0);
+          transition: opacity 120ms linear, transform 120ms linear;
 
           span {}
 
@@ -391,7 +452,7 @@ a {
     @include container--full;
     display: table;
     padding-top: 32px;
-    padding-bottom: 32px - 8;
+    padding-bottom: 32px;
 
     .aside__col {
       display: table-cell;
@@ -403,7 +464,6 @@ a {
     h4 {
       color: #FFF;
       font-size: 18px;
-      font-weight: normal;
       line-height: 1;
       margin-top: 0;
       margin-bottom: 16px;
