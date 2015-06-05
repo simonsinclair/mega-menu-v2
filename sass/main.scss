@@ -95,10 +95,8 @@ a {
   a {
     display: block;
     font-size: 14px;
-    line-height: 1;
-    padding-top: 12px;
+    line-height: 38px;
     padding-right: 12px;
-    padding-bottom: 12px;
     opacity: 1;
 
     &::before {
@@ -172,8 +170,8 @@ a {
   }
 
   .toggle-menu {
-    font-weight: bold;
-    -webkit-font-smoothing: antialiased;
+    // font-weight: bold;
+    // -webkit-font-smoothing: antialiased;
 
     &:hover {
       background-color: #222;
@@ -187,9 +185,10 @@ a {
 
     }
 
-    img {
-      margin-right: 3px;
-      margin-bottom: -1px;
+    .toggle-menu__list,
+    .toggle-menu__close {
+      position: relative;
+      bottom: -1px;
     }
 
     .toggle-menu__close { display: none; }
@@ -259,8 +258,10 @@ a {
   -webkit-font-smoothing: antialiased;
 }
 .mega-menu--open {
-  height: 640px;
+  height: 644px;
   transition: height $openDuration $openCurve;
+
+  @media (max-width: 910px) { height: 712px; }
 
   .mega-menu__core {
 
@@ -309,14 +310,17 @@ a {
     }
   }
 }
-  .mega-menu__core {
+  .mega-menu__inner {
     @include container;
     @include container--full;
+  }
+  .mega-menu__core {
     list-style: none;
     margin-top: 0;
     margin-bottom: 0;
     padding-top: 32px;
     padding-bottom: 32px;
+    padding-left: 0;
 
     > li {
       background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQVQI12MwBgAANQA0YDqBrwAAAABJRU5ErkJggg==);
@@ -333,9 +337,11 @@ a {
         > a {
           float: left;
           width: 181px + 20;
+          @media (max-width: 846px) { width: 157px + 20; }
 
           &:hover {
             width: 181px + 20 + 16;
+            @media (max-width: 846px) { width: 157px + 20 + 16; }
           }
         }
       }
@@ -345,6 +351,7 @@ a {
         > a {
           margin-left: 0;
           width: 181px + 20 + 16;
+          @media (max-width: 846px) { width: 157px + 20 + 16; }
 
           span {
             border-left: 4px solid $brand-2;
@@ -358,6 +365,7 @@ a {
         > a {
           margin-left: 0;
           width: 181px + 20 + 16;
+          @media (max-width: 846px) { width: 157px + 20 + 16; }
 
           span {
             border-left: 4px solid #FFF;
@@ -370,6 +378,9 @@ a {
         color: #FFF;
         display: inline-block;
         font-size: 18px;
+
+        @media (max-width: 846px) { font-size: 16px; }
+
         font-weight: bold;
         line-height: 1;
         margin-left: 16px;
@@ -399,6 +410,7 @@ a {
         li {
           float: left;
           padding-right: 24px;
+          @media (max-width: 846px) { padding-right: 20px; }
 
           &:first-child {}
 
@@ -425,6 +437,11 @@ a {
           padding-bottom: 10px;
           transition: opacity 120ms linear, transform 120ms linear;
 
+          @media (max-width: 846px) {
+            padding-top: 10px;
+            font-size: 15px;
+          }
+
           span {}
 
           &:hover {
@@ -438,8 +455,7 @@ a {
     }
   }
 
-  .mega-menu__aside {}
-  .aside__inner {
+  .mega-menu__aside {
     @include container;
     @include container--full;
     border-top: 4px solid #333;
@@ -449,8 +465,6 @@ a {
 
     .aside__col {
       display: table-cell;
-      padding-right: 16px;
-      padding-left: 16px;
       width: 33.33%;
 
       &:first-of-type {}
@@ -459,11 +473,12 @@ a {
 
     h4 {
       color: #C9C9C9;
-      font-size: 13px;
+      font-size: 18px;
+      font-weight: normal;
       line-height: 1;
       margin-top: 0;
       margin-bottom: 20px;
-      text-transform: uppercase;
+      margin-left: 16px;
     }
 
     ul {
@@ -473,17 +488,42 @@ a {
     }
 
       li {
-        padding-bottom: 8px;
+        padding-bottom: 12px;
+        max-width: 156px;
         width: 50%;
+
+        // @media (max-width: 1000px) {
+        //   // max-width: none;
+        //   // width: 100%;
+        // }
+        @media (max-width: 910px) {
+          max-width: none;
+          width: 100%;
+        }
       }
       a {
         color: #FFF;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: bold;
         line-height: 1;
 
+        @media (max-width: 1000px) {
+          font-size: 15px;
+        }
+        @media (max-width: 910px) {
+          font-size: 16px;
+        }
+
         &:hover {
           color: #FFF;
+
+          span {
+            border-color: $brand-2;
+          }
         }
       }
+        span {
+          border-left: 4px solid transparent;
+          padding-left: 12px;
+        }
   }
